@@ -78,7 +78,7 @@ for file in files:
         # Проверяем, есть ли нужные колонки
         required_columns = {"itemId"} | set(indicators)
         if not required_columns.issubset(df.columns):
-            print(f"⚠️ Пропущен файл {file}: нет нужных колонок {required_columns - set(df.columns)}")
+            print(f"Пропущен файл {file}: нет нужных колонок {required_columns - set(df.columns)}")
             continue
 
         # "2024_Q1.xlsx" → "2024 Q1"
@@ -88,7 +88,7 @@ for file in files:
         all_data.append(df)
 
     except Exception as e:
-        print(f"❌ Ошибка при обработке {file}: {e}")
+        print(f"Ошибка при обработке {file}: {e}")
 
 merged_df = pd.concat(all_data, ignore_index=True)
 aggregated_df = merged_df.groupby("itemId", as_index=False)[indicators].sum()
